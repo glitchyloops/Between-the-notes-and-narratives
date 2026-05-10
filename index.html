@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Between Notes & Narratives</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body class="mood-default" id="app">
+
+  <!-- Animated Background Canvas -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-symbol">♩</span>
+        <div class="logo-text">
+          <span class="logo-title">Between Notes</span>
+          <span class="logo-sub">&amp; Narratives</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#mood-section">Explore</a>
+        <a href="#suggestions-section">Discover</a>
+        <a href="#feedback-section">Suggest</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">A Mood Explorer</p>
+      <h1 class="hero-title">
+        <em>Feel it.</em><br/>
+        Find it.
+      </h1>
+      <p class="hero-desc">
+        Select your emotional state and discover songs &amp; books
+        curated just for that feeling — across genres, languages, and worlds.
+      </p>
+      <a href="#mood-section" class="cta-btn">
+        <span>Begin Exploring</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="hero-visual">
+      <div class="vinyl-record">
+        <div class="vinyl-inner"></div>
+        <div class="vinyl-center"></div>
+      </div>
+      <div class="book-stack">
+        <div class="book b1"></div>
+        <div class="book b2"></div>
+        <div class="book b3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mood Selector -->
+  <section class="mood-section" id="mood-section">
+    <div class="section-label">01 — Choose Your Mood</div>
+    <h2 class="section-title">How are you feeling<br/><em>right now?</em></h2>
+    <div class="mood-grid">
+      <button class="mood-card" data-mood="happy" aria-label="Happy">
+        <span class="mood-emoji">☀️</span>
+        <span class="mood-name">Happy</span>
+        <span class="mood-hint">Joyful & Bright</span>
+      </button>
+      <button class="mood-card" data-mood="melancholic" aria-label="Melancholic">
+        <span class="mood-emoji">🌧️</span>
+        <span class="mood-name">Melancholic</span>
+        <span class="mood-hint">Reflective & Wistful</span>
+      </button>
+      <button class="mood-card" data-mood="energetic" aria-label="Energetic">
+        <span class="mood-emoji">⚡</span>
+        <span class="mood-name">Energetic</span>
+        <span class="mood-hint">Pumped & Alive</span>
+      </button>
+      <button class="mood-card" data-mood="romantic" aria-label="Romantic">
+        <span class="mood-emoji">🌹</span>
+        <span class="mood-name">Romantic</span>
+        <span class="mood-hint">Tender & Longing</span>
+      </button>
+      <button class="mood-card" data-mood="calm" aria-label="Calm">
+        <span class="mood-emoji">🌊</span>
+        <span class="mood-name">Calm</span>
+        <span class="mood-hint">Peaceful & Still</span>
+      </button>
+      <button class="mood-card" data-mood="mysterious" aria-label="Mysterious">
+        <span class="mood-emoji">🌙</span>
+        <span class="mood-name">Mysterious</span>
+        <span class="mood-hint">Dark & Curious</span>
+      </button>
+      <button class="mood-card" data-mood="angry" aria-label="Angry">
+        <span class="mood-emoji">🔥</span>
+        <span class="mood-name">Fierce</span>
+        <span class="mood-hint">Bold & Defiant</span>
+      </button>
+      <button class="mood-card" data-mood="nostalgic" aria-label="Nostalgic">
+        <span class="mood-emoji">🍂</span>
+        <span class="mood-name">Nostalgic</span>
+        <span class="mood-hint">Warm & Distant</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Suggestions Section -->
+  <section class="suggestions-section hidden" id="suggestions-section">
+    <div class="suggestions-header">
+      <div class="section-label">02 — Your Picks</div>
+      <div class="mood-display">
+        <span id="current-mood-label">Mood: —</span>
+        <div class="mood-indicator" id="mood-indicator"></div>
+      </div>
+    </div>
+
+    <!-- Music -->
+    <div class="rec-block">
+      <h3 class="rec-block-title">
+        <span class="rec-icon">🎵</span> Songs for this Mood
+      </h3>
+      <div class="cards-row" id="music-cards"></div>
+      <button class="refresh-btn" id="refresh-music" aria-label="Get new music suggestions">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5A6.5 6.5 0 1 1 2.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 2.5v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Shuffle Songs
+      </button>
+    </div>
+
+    <!-- Books -->
+    <div class="rec-block">
+      <h3 class="rec-block-title">
+        <span class="rec-icon">📖</span> Books for this Mood
+      </h3>
+      <div class="cards-row" id="book-cards"></div>
+      <button class="refresh-btn" id="refresh-books" aria-label="Get new book suggestions">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.5 2.5A6.5 6.5 0 1 1 2.5 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2.5 2.5v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Shuffle Books
+      </button>
+    </div>
+  </section>
+
+  <!-- Feedback / Suggest Form -->
+  <section class="feedback-section" id="feedback-section">
+    <div class="section-label">03 — Your Voice</div>
+    <h2 class="section-title">Have a suggestion?</h2>
+    <p class="section-sub">Know a song or book that fits a mood perfectly? Tell us.</p>
+    <form class="suggestion-form" id="suggestion-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-name">Your Name</label>
+          <input type="text" id="f-name" placeholder="e.g. Shruti" autocomplete="name"/>
+          <span class="field-error" id="err-name"></span>
+        </div>
+        <div class="form-group">
+          <label for="f-mood">Mood</label>
+          <select id="f-mood">
+            <option value="">Select a mood…</option>
+            <option value="happy">Happy</option>
+            <option value="melancholic">Melancholic</option>
+            <option value="energetic">Energetic</option>
+            <option value="romantic">Romantic</option>
+            <option value="calm">Calm</option>
+            <option value="mysterious">Mysterious</option>
+            <option value="angry">Fierce</option>
+            <option value="nostalgic">Nostalgic</option>
+          </select>
+          <span class="field-error" id="err-mood"></span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-type">Type</label>
+          <select id="f-type">
+            <option value="">Song or Book?</option>
+            <option value="song">Song</option>
+            <option value="book">Book</option>
+          </select>
+          <span class="field-error" id="err-type"></span>
+        </div>
+        <div class="form-group">
+          <label for="f-title">Title / Artist</label>
+          <input type="text" id="f-title" placeholder="e.g. Tum Hi Ho – Arijit Singh"/>
+          <span class="field-error" id="err-title"></span>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label for="f-reason">Why does it fit?</label>
+        <textarea id="f-reason" rows="3" placeholder="Share your thoughts…"></textarea>
+        <span class="field-error" id="err-reason"></span>
+      </div>
+      <button type="submit" class="submit-btn">
+        <span>Submit Suggestion</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="form-success hidden" id="form-success">
+        <span>✦</span> Thank you! Your suggestion has been noted.
+      </div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-credits">
+        <em>Between Notes &amp; Narratives</em> — by S &amp; S · 2026
+      </p>
+      <p class="footer-quote">"Music is the literature of the heart; it commences where speech ends" — Alphonse de Lamartine</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
